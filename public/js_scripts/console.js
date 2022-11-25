@@ -5,8 +5,9 @@ var $TAKE_INPUT  = `#takeInput`,
   $TERMINAL_NAME = `#terminalName`,
   $RESUME_HTML   = `#resumeHtml`,
   $PRESS_ENTER   = `.pressEnter`;
-
-
+var API_ENPOINTS = {
+  RESUME : `/resumeData`
+}; 
 const detectdeviceName = () => {
   return new Promise((resolve, reject) => {
     let module={options:[],header:[navigator.platform,navigator.userAgent,navigator.appVersion,navigator.vendor,window.opera],dataos:[{name:"Windows Phone",value:"Windows Phone",version:"OS"},{name:"Windows",value:"Win",version:"NT"},{name:"iPhone",value:"iPhone",version:"OS"},{name:"iPad",value:"iPad",version:"OS"},{name:"Kindle",value:"Silk",version:"Silk"},{name:"Android",value:"Android",version:"Android"},{name:"PlayBook",value:"PlayBook",version:"OS"},{name:"BlackBerry",value:"BlackBerry",version:"/"},{name:"Macintosh",value:"Mac",version:"OS X"},{name:"Linux",value:"Linux",version:"rv"},{name:"Palm",value:"Palm",version:"PalmOS"}],databrowser:[{name:"Chrome",value:"Chrome",version:"Chrome"},{name:"Firefox",value:"Firefox",version:"Firefox"},{name:"Safari",value:"Safari",version:"Version"},{name:"Internet Explorer",value:"MSIE",version:"MSIE"},{name:"Opera",value:"Opera",version:"Opera"},{name:"BlackBerry",value:"CLDC",version:"CLDC"},{name:"Mozilla",value:"Mozilla",version:"Mozilla"}],init:function(){var a=this.header.join(" "),n=this.matchItem(a,this.dataos),r=this.matchItem(a,this.databrowser);return{os:n,browser:r}},matchItem:function(a,n){var r,o,i,l,s,v=0,m=0;for(v=0;v<n.length;v+=1)if(i=(r=RegExp(n[v].value,"i")).test(a)){if(o=RegExp(n[v].version+"[- /:;]([\\d._]+)","i"),l=a.match(o),s="",l&&l[1]&&(l=l[1]),l)for(m=0,l=l.split(/[._]+/);m<l.length;m+=1)0===m?s+=l[m]+".":s+=l[m];else s="0";return{name:n[v].name,version:parseFloat(s)}}return{name:"unknown",version:0}}};var e=module.init();resolve({osName:e.os.name,browserName:e.browser.name,platForm:navigator.platform});
