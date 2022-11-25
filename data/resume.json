@@ -1,0 +1,134 @@
+{
+	"aboutMe"      : "I'm a web developer with a mind of tester. I’m always curious about the new things which I can implement on my projects. I like to do searches regarding the new packages and plugins to keep my self updated.",
+	"contact"      : {
+		"phoneNumber" : "+91-79861-29475",
+		"location"    : "Bawa colony, st 3, h no 170, Ludhiana",
+		"mail"        : "ss691601@gmail.com"
+	},
+	"education"       : [
+		{
+			"education" : "Master’s",
+			"years"     : "2014-2017",
+			"university": "Lovely Professional University",
+			"course"    : "Master’s In Computer Application",
+			"cgpa"      : "6.3" 
+		},
+		{
+			"education" : "Bachelor’s",
+			"years"     : "2017-2019",
+			"university": "Lovely Professional University",
+			"course"    : "Bachelor’s In Computer Application",
+			"cgpa"      : "7.3" 
+		}
+	],
+	"experience"      : [
+		{
+			"designation" : "PHP Developer",
+			"company"     : "Knick Global",
+			"location"    : "Mohali",
+			"years"       : "08/2019 - 01/2020",
+			"description" : "Worked as a PHP developer and managed various e-commerce websites, open-cart, and laravel like framework as well as some admin panel and CRM based web apps and API development."
+		},
+		{
+			"designation" : "NodeJs Developer",
+			"company"     : "Xornor Technologies",
+			"location"    : "Mohali",
+			"years"       : "02/2020 - 07/2020",
+			"description" : "Glad to work on both PHP as well as Nodejs. During this duration, I worked on a project called Wiziq Classroom which is a video conferencing application like a google classroom."
+		},
+		{
+			"designation" : "NodeJs Developer",
+			"company"     : "Wegile Developement",
+			"location"    : "Mohali",
+			"years"       : "07/2020 - <span id='currentPerioad'></span>",
+			"description" : "Working as a Web developer at Wegile I got the opportunity to do several projects which enhance my skills every day"
+		}
+	],
+	"projects"        : [
+		{
+			"company"     : "Xornor Technologies",
+			"projects"    : {
+				"WizIQ" : "https://www.wiziq.com"
+			}
+		},
+		{
+			"company"     : "Wegile Infotech",
+			"projects"    : {
+				"PM-Genius" : "https://dashboard.pmgeniusapp.com/",
+				"Finoken"   : "https://www.finoken.com/",
+				"CashMeetCrew" : "https://play.google.com/store/apps/details?id=com.evolutionindesignz.castmeetcrew.android&pli=1",
+				"Everybodee" : "https://www.everybodee.com/",
+				"Toolbox"    : "https://toolbox4success.com/",
+				"Health-elink (Doctor Portal)" : "https://hcp.healthelink.co/",
+				"Health-elink (Patient Portal)": "https://patientportal.healthelink.co/"
+			}
+		}
+	],
+	"skills"        : [
+		{
+			"title" : "GeoLocations (Places)",
+			"link"  : "https://developers.google.com/maps/documentation/javascript/examples/place-search"
+		},
+		{
+			"title" : "Socket (IO)",
+			"link"  : "https://socket.io/"
+		},
+		{
+			"title" : "MongoDB",
+			"link"  : "https://www.mongodb.com/"
+		},
+		{
+			"title" : "MySql",
+			"link"  : "https://www.mysql.com/"
+		},
+		{
+			"title" : "Jquery",
+			"link"  : "https://jquery.com/"
+		},
+		{
+			"title" : "JavaScript",
+			"link"  : "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+		},
+		{
+			"title" : "NodeJs",
+			"link"  : "https://nodejs.org/en/"
+		},
+		{
+			"title" : "PHP",
+			"link"  : "https://www.php.net/"
+		},
+		{
+			"title" : "CSS",
+			"link"  : "https://developer.mozilla.org/en-US/docs/Web/CSS"
+		},
+		{
+			"title" : "HTML",
+			"link"  : "https://html.com/"
+		},
+		{
+			"title" : "AWS",
+			"link"  : "https://aws.amazon.com/"
+		},
+		{
+			"title" : "PostMan",
+			"link"  : "https://www.postman.com/"
+		},
+		{
+			"title" : "ThunderClient",
+			"link"  : "https://www.thunderclient.com/"
+		}
+	],
+	"languages"     : [
+		{
+			"title" : "English"
+		},
+		{
+			"title": "Hindi",
+			"native" : "हिन्दी"
+		},
+		{
+			"title": "Punjabi",
+			"native" : "ਪੰਜਾਬੀ"
+		}
+	]
+}
