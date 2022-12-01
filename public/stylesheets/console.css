@@ -130,3 +130,6 @@ a:hover {
 .list-group{
 	--bs-list-group-item-padding-x: 0.6rem !important;
 }
+.terminalName{
+	font-weight: bold;
+}

@@ -52,6 +52,7 @@ const moveCursorToEnd = function(el, focused) {
 window.onload         = function() {
   Logger(`#SunnyResume`,`success`)
   document.onkeydown  = detectKey;
+  // document.onkeyup    = detectKeyq1;
   //MOVE CURSOR TO END
   elem = document.getElementById($TAKE_INPUT.replace("#","").trim());
   moveCursorToEnd(elem);
@@ -63,6 +64,23 @@ const detectKey    = (e) => {
     printLog();    
   }
 }
+
+// const detectKeyq1 =(e) => {
+//   let sendDate     = (new Date()).getTime();
+//   e = e || window.event;
+//   if (e.keyCode > 48 && e.keyCode < 56) {
+//     let commands = {
+//       49: 'aboutMe',
+//       50: 'contact',
+//       51: 'education',
+//       52: 'experience',
+//       53: 'projects',
+//       54: 'skills',
+//       55: 'languages'
+//     };
+//     appendData(sendDate, commands[e.keyCode]);
+//   }
+// }
 
 const printLog    = () => {
   $($LOG).html(`<div class="row mt-5"><div class="col-md-6"><img src="./images/cv.png" class="img-fluid"></div><div class="col-md-6"><p>Sunny Singh</p><p id="urlPath"></p><br/><p>LinkedIn: <a href="https://www.linkedin.com/in/sunny-singh-38a52b113" target="_blank">https://www.linkedin.com/in/sunny-singh-38a52b113</a></p><br/><caption>** Click on commands these commands to view my resume..</caption><ul type="none" id="commands" class="commands"><li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li><li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></ul></div></div>
@@ -180,7 +198,7 @@ const printLog    = () => {
   // COMMANDS CLICKABLE
   $($LOG).on('click', $CMDS, async function(e) {
     let sendDate  = (new Date()).getTime();
-    appendData(sendDate, this);
+    appendData(sendDate, $(this).attr('rel'));
   });
 
   // WELCOME SCREEE CLICK
@@ -191,7 +209,7 @@ const printLog    = () => {
   // CALLING NAVIGATION LINK
   $($RESUME_HTML).on('click', '.ulWidth li', async function(e) {
     let sendDate         = (new Date()).getTime();
-    appendData(sendDate, this);
+    appendData(sendDate, $(this).attr('rel'));
   });
 
   // APPEND DATA
@@ -201,7 +219,7 @@ const printLog    = () => {
       let receiveDate    = (new Date()).getTime();
       let responseTimeMs = receiveDate - sendDate;
       moveToLatest();
-      printData(decideWhatToPrint(responce.data, $(element).attr('rel')), responseTimeMs);
+      printData(decideWhatToPrint(responce.data, element), responseTimeMs);
     }
   };
 
