@@ -8,7 +8,7 @@ var $TAKE_INPUT  = `#takeInput`,
   $TERIMINAL_CONSOLE = `terminalConsole`;
 var API_ENPOINTS = {
   RESUME : `/resumeData`
-}; 
+};
 //Logger
 const   Logger       =  (message, color) => {
   color            = color || "black";
@@ -50,6 +50,7 @@ const moveCursorToEnd = function(el, focused) {
 }
 
 window.onload         = function() {
+  Logger(`#SunnyResume`,`success`)
   document.onkeydown  = detectKey;
   //MOVE CURSOR TO END
   elem = document.getElementById($TAKE_INPUT.replace("#","").trim());
@@ -210,10 +211,9 @@ const printLog    = () => {
   }
 
   //MOVE TO LAST WINDOW
-  const moveToLatest        = (timeInverval) => {
-    var objDiv              = document.getElementsByTagName("body");
-    // var objDiv              = document.getElementsByClassName($TERIMINAL_CONSOLE);
-    objDiv.scrollTop        = objDiv.scrollHeight
+  const moveToLatest        = (elem) => {
+    $("html, body").animate({ scrollTop: $(document).height() }, "easeOutQuint");
+    return false;
   }
 })();
 
