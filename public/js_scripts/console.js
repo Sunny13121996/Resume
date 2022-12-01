@@ -42,27 +42,7 @@ const detectKey    = (e) => {
 }
 
 const printLog    = () => {
-  $($LOG).html(`
-    <div class="row mt-5">
-      <div class="col-md-5">
-        <img src="./images/cv.png" width="480px">
-      </div>
-      <div class="col-md-7">
-        <p>Sunny Singh</p>
-        <p id="urlPath"></p><br/>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/sunny-singh-38a52b113" target="_blank">https://www.linkedin.com/in/sunny-singh-38a52b113</a></p><br/>
-        <caption>** Click on commands these commands to view my resume..</caption>
-        <ul type="none" id="commands" class="commands">
-          <li rel="aboutMe">About Me</li>
-          <li rel="contact">Contact Info</li>
-          <li rel="education">Education</li>
-          <li rel="experience">Work Experience</li>
-          <li rel="projects">Projects</li>
-          <li rel="skills">Skills</li>
-          <li rel="languages">Languages</li>
-        </ul>
-      </div>
-    </div>
+  $($LOG).html(`<div class="row mt-5"><div class="col-md-6"><img src="./images/cv.png" class="img-fluid"></div><div class="col-md-6"><p>Sunny Singh</p><p id="urlPath"></p><br/><p>LinkedIn: <a href="https://www.linkedin.com/in/sunny-singh-38a52b113" target="_blank">https://www.linkedin.com/in/sunny-singh-38a52b113</a></p><br/><caption>** Click on commands these commands to view my resume..</caption><ul type="none" id="commands" class="commands"><li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li><li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></ul></div></div>
   `);
 }
 
@@ -104,31 +84,14 @@ const printLog    = () => {
     let commandRun    = ``;
     switch(expression) {
       case 'aboutMe':
-        renderData    = `${data[expression]}`;
+        renderData    = `<p class="text-light">${data[expression]}</p>`;
         recordsLength = 1;
         commandRun    = `./AboutMe`
         break;
       case 'contact':
         commandRun    = `./Contact`
         recordsLength = 1;
-        renderData    = ` <div class="table-responsive">
-            <table class="table table-bordered borderGreen">
-              <thead>
-                <tr>
-                  <th>Phone Number</th>
-                  <th>Mail</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><a href="tel:${data[expression].phoneNumber}">${data[expression].phoneNumber}</a></td>
-                  <td><a href="mail:${data[expression].mail}">${data[expression].mail}</a></td>
-                  <td>${data[expression].location}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        renderData    = ` <div class="table-responsive"><table class="table table-bordered borderGreen"><thead><tr><th>Phone Number</th><th>Mail</th><th>Location</th></tr></thead><tbody><tr><td><a href="tel:${data[expression].phoneNumber}">${data[expression].phoneNumber}</a></td><td><a href="mailto:${data[expression].mail}">${data[expression].mail}</a></td><td>${data[expression].location}</td></tr></tbody></table></div>
         `;
         break;
       case 'education':
@@ -138,23 +101,7 @@ const printLog    = () => {
         data[expression].forEach((el) => { 
           tr += `<tr><td>${el.education}</td><td>${el.university}</td><td>${el.course}</td><td>${el.years}</td><td>${el.cgpa}</td></tr>`;
         });
-        renderData = `
-          <div class="table-responsive">
-            <table class="table table-bordered borderGreen">
-              <thead>
-                <tr>
-                  <th>Education</th>
-                  <th>University</th>
-                  <th>Course</th>
-                  <th>Duration</th>
-                  <th>CGPA</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${tr}
-              </tbody>
-            </table>
-          </div>
+        renderData = `<div class="table-responsive"><table class="table table-bordered borderGreen"><thead><tr><th>Education</th><th>University</th><th>Course</th><th>Duration</th><th>CGPA</th></tr></thead><tbody>${tr}</tbody></table></div>
         `;
         break;
       case 'experience':
@@ -163,30 +110,7 @@ const printLog    = () => {
         data[expression][data[expression].length-1].years = data[expression][data[expression].length-1].years+" "+getMonthAndYear()+" (Present)";
         let tables = ``;
         data[expression].forEach((el) => {
-          tables += `<div class="table-responsive">
-            <table class="table table-bordered borderGreen">
-              <tr>
-                <th>Designation</th>
-                <td>${el.designation}</td>
-              </tr>
-              <tr>
-                <th>Company</th>
-                <td>${el.company}</td>
-              </tr>
-              <tr>
-                <th>Location</th>
-                <td>${el.location}</td>
-              </tr>
-              <tr>
-                <th>Duration</th>
-                <td>${el.years}</td>
-              </tr>
-              <tr>
-                <th>Description</th>
-                <td>${el.description}</td>
-              </tr>
-            </table>
-          </div>`;
+          tables += `<div class="table-responsive"><table class="table table-bordered borderGreen"> <tr> <th>Designation</th> <td>${el.designation}</td></tr><tr> <th>Company</th> <td>${el.company}</td></tr><tr> <th>Location</th> <td>${el.location}</td></tr><tr> <th>Duration</th> <td>${el.years}</td></tr><tr> <th>Description</th> <td>${el.description}</td></tr></table></div>`;
         });
         renderData = tables;
         break;
@@ -197,25 +121,10 @@ const printLog    = () => {
         data[expression].forEach((el) => {
           let projectData = ``;
           for (const [projectName, projectLink] of Object.entries(el.projects)) {
-            projectData  += `
-              <tr>
-                <td>${projectName}</td>
-                <td><a href="${projectLink}" target="_blank">${projectLink}</a></td>
-              </tr>
+            projectData  += `<tr><td>${projectName}</td><td><a href="${projectLink}" target="_blank">${projectLink}</a></td></tr>
             `;
           }
-          projectsTables += `<div class="table-responsive">
-             <table class="table table-bordered borderGreen">
-              <thead>
-                <tr>
-                  <th colspan="2">Company - ${el.company}</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${projectData}
-              </tbody>
-            </table>
-          </div>`;
+          projectsTables += `<div class="table-responsive"><table class="table table-bordered borderGreen"><thead><tr><th colspan="2">Company - ${el.company}</th></tr></thead><tbody>${projectData}</tbody></table></div>`;
         });
         renderData = projectsTables;
         break;
@@ -226,7 +135,7 @@ const printLog    = () => {
         data[expression].forEach((el) => {
           skillData    += `<a href="${el.link}" target="_blank"><span class="badge m-2 rounded-pill border border-success text-success">${el.title}</span></a>`;
         });
-        renderData = `<div class="d-flex">${skillData}</div>`;
+        renderData = `<div class="container">${skillData}</div>`;
         break;
       case 'languages':
         commandRun      = `./Languages`
@@ -235,7 +144,7 @@ const printLog    = () => {
         data[expression].forEach((el) => {
           langsData    += `<span class="badge m-2 rounded-pill border border-success text-success">${el.title} ${(el.native)? "("+el.native+")": "" }</span>`;
         });
-        renderData = `<div class="d-flex">${langsData}</div>`;
+        renderData = `<div class="container">${langsData}</div>`;
         break;
     }
     return { 
@@ -274,24 +183,7 @@ const printLog    = () => {
 
   // PRINT DATA
   const printData = (data, responseTimeMs) => {
-    $($RESUME_HTML).append(`
-      <div class="row">
-        <div class="col-md-10 mt-3">
-          <ul class="d-flex ulWidth" type="none">
-            <li rel="aboutMe">About Me</li>
-            <li rel="contact">Contact Info</li>
-            <li rel="education">Education</li>
-            <li rel="experience">Work Experience</li>
-            <li rel="projects">Projects</li>
-            <li rel="skills">Skills</li>
-            <li rel="languages">Languages</li>
-          </ul>
-          <p class="commandRun">:~ $ ${data.commandRun}</p>
-          ${data.renderData} 
-          <p class="responceTimeInMs">${data.recordsLength} in set (${responseTimeMs}.00 ms)</p> 
-        </div>
-      </div>
-    `);
+    $($RESUME_HTML).append(`<div class="row"> <div class="col-md-10 mt-3"> <ul class="d-flex ulWidth" type="none"> <div class="col-md-3"> <li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li></div><div class="col-md-"> <li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></div></ul> <p class="commandRun">:~ $ ${data.commandRun}</p>${data.renderData}<p class="responceTimeInMs">${data.recordsLength}in set (${responseTimeMs}.00 ms)</p></div></div>`);
   }
 })();
 

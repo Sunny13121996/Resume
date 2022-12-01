@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Curriculum #Vitae ** Sunny **</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  	<title>Curriculum #Vitae ** Sunny **</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="/images/sunny.png"/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://kit.fontawesome.com/93bdcfd736.js" crossorigin="anonymous"></script>
-  <link href="/css/console.css" rel="stylesheet">
+  	<link href="/css/bootstrap.min.css" rel="stylesheet">
+  	<script src="/js/93bdcfd736.js" crossorigin="anonymous"></script>
+  	<link href="/css/console.css" rel="stylesheet">
 </head>
 <body>
-	<div class="text-center">
-		<button class="btn bg-dark text-white"><i class="fa fa-usd" aria-hidden="true"></i> Terminal</button>
-		<button class="btn bg-light"><i class="fa fa-desktop" aria-hidden="true"></i> GUI</button>
-	</div>
-	<div class="container fluid mt-5">
-		<div class="window-container resizable">
-			<div class='resizers'>
-				<div class='resizer top-left'></div>
-		    <div class='resizer top-right'></div>
-		    <div class='resizer bottom-left'></div>
-		    <div class='resizer bottom-right'></div>
-				<div class="top-bar">
-					<div class="window-buttons">
-						<ul>
-							<li><span><img src="https://img.icons8.com/ios-glyphs/48/000000/delete-sign.png"></span></li>
-							<li><span><img src="https://img.icons8.com/ios-glyphs/48/000000/minus-math.png"></span></li>
-							<li><span></span></li>
-						</ul>
-					</div>
-					<div class="window-title">
-						<img src="https://img.icons8.com/color/48/000000/home.png"><span id="terminalName">Terminal Window</span>
-					</div>
+	<div class="main">
+		<div class="container-fluid">
+			<div class="text-center">
+				<button class="btn bg-dark text-white">
+					<i class="fa fa-usd" aria-hidden="true"></i> 
+					Terminal
+				</button>
+				<button class="btn bg-light">
+					<i class="fa fa-desktop" aria-hidden="true"></i> 
+					GUI
+				</button>
+			</div>
+		</div>
+		<div class="container bg-dark rounded-3 mb-4">
+			<div class="row bg-light">
+				<div class="col-md-3 bg-light">
+					<ul class="list-group list-group-horizontal ">
+					  	<li class="list-group-item ">-</li>
+					  	<li class="list-group-item ">x</li>
+					  	<li class="list-group-item ">o</li>
+					  	<div class="text-center col-md-2 d-lg-none d-sm-block p-2">
+				 			Linux/Terminal	
+						</div>			 
+					</ul>	
 				</div>
-				<div class="terminal-body">
-					<p>Last login: <span id="nowDate"></span> on console</p>
-					<p>MacBook-Pro:~ $ <span class="_warning">#Warning:</span> Hi @all, My Name is Sunny Singh This is my curriculum vitae in my own <span class="_dev">#Dev</span> ways.</p>
-					<div id="log">
-						:~ $ 
-						<input class="takeInput" id="takeInput" onfocus="if(typeof moveCursorToEnd != 'undefined') moveCursorToEnd(this, true)" name="igname" type="text" maxlength="40" autofocus="autofocus" value="./sunnyResume.sh">
-						<div class="text-center mt-5">
-							<img src="./images/press.png" width="390px" class="pressEnter">
-							<img src="./images/enter.png" width="390px" class="pressEnter">
-							<h4 class="textBold">To Get Started Or (Tap on press enter if you are mobile user.)</h4>
-						</div>
-					</div>
-					<div id="resumeHtml"></div>
+			 	<div class="text-center col-md-6 d-none d-lg-block pt-2">
+			 		Linux/Terminal		
+				</div>	
+				<div class="col-md-3"></div>
+			</div>
+			<p class="text-white">Last login: <span id="nowDate"></span> on console</p>
+			<p class="text-white">MacBook-Pro:~ $ <span class="_warning">#Warning:</span> Hi @all, My Name is Sunny Singh This is my curriculum vitae in my own <span class="_dev">#Dev</span> ways.</p>
+			<div id="log">
+				:~ $ 
+				<input class="takeInput" id="takeInput" onfocus="if(typeof moveCursorToEnd != 'undefined') moveCursorToEnd(this, true)" name="igname" type="text" maxlength="40" autofocus="autofocus" value="./sunnyResume.sh">
+				<div class="text-center mt-5">
+					<img src="./images/press.png" class="pressEnter img-fluid">
+					<img src="./images/enter.png" class="pressEnter img-fluid">
+					<h4 class="textBold">To Get Started Or (Tap on press enter if you are mobile user.)</h4>
 				</div>
 			</div>
+			<div id="resumeHtml"></div>
 		</div>
 	</div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/jquery.min.js"></script>
 <script src="/js/console.js"></script>
 </html>
