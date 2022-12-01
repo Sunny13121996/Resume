@@ -93,16 +93,29 @@ a:hover {
 .pressEnter {
 	cursor: pointer;
 }
-
+.terminalWindowTab{  
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
 .terminal-body {
-	/*min-width:auto;
-	min-height:auto;*/
 	padding: 15px;
 	color: white;
 	font: 15px/1.5 Monaco, MonoSpace;
 }
 .terminal-body p{
 	margin: 0;
+}
+.terminalControls li{
+	margin: 0px;
+}
+.terminalControls li:nth-child(1) {
+	color: #ee514b;
+}
+.terminalControls li:nth-child(2) {
+	color: #f7c446;
+}
+.terminalControls li:nth-child(3) {
+	color: #60cd44;
 }
 #log {
 	font-size: 1em;

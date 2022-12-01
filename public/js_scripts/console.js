@@ -2,12 +2,34 @@ var $TAKE_INPUT  = `#takeInput`,
   $LOG           = `#log`,
   $URL_          = `#urlPath`,
   $CMDS          = `#commands li`,
-  $TERMINAL_NAME = `#terminalName`,
+  $TERMINAL_NAME = `.terminalName`,
   $RESUME_HTML   = `#resumeHtml`,
   $PRESS_ENTER   = `.pressEnter`;
+  $TERIMINAL_CONSOLE = `terminalConsole`;
 var API_ENPOINTS = {
   RESUME : `/resumeData`
 }; 
+//Logger
+const   Logger       =  (message, color) => {
+  color            = color || "black";
+  switch (color) {
+    case "success":  
+      color = "Green"; 
+      break;
+    case "info":     
+      color = "DodgerBlue";  
+      break;
+    case "error":   
+      color = "Red";     
+      break;
+    case "warning":  
+      color = "Orange";   
+      break;
+    default: 
+      color = color;
+  }
+  console.log("%c" + message, "color:" + color);
+}
 const detectdeviceName = () => {
   return new Promise((resolve, reject) => {
     let module={options:[],header:[navigator.platform,navigator.userAgent,navigator.appVersion,navigator.vendor,window.opera],dataos:[{name:"Windows Phone",value:"Windows Phone",version:"OS"},{name:"Windows",value:"Win",version:"NT"},{name:"iPhone",value:"iPhone",version:"OS"},{name:"iPad",value:"iPad",version:"OS"},{name:"Kindle",value:"Silk",version:"Silk"},{name:"Android",value:"Android",version:"Android"},{name:"PlayBook",value:"PlayBook",version:"OS"},{name:"BlackBerry",value:"BlackBerry",version:"/"},{name:"Macintosh",value:"Mac",version:"OS X"},{name:"Linux",value:"Linux",version:"rv"},{name:"Palm",value:"Palm",version:"PalmOS"}],databrowser:[{name:"Chrome",value:"Chrome",version:"Chrome"},{name:"Firefox",value:"Firefox",version:"Firefox"},{name:"Safari",value:"Safari",version:"Version"},{name:"Internet Explorer",value:"MSIE",version:"MSIE"},{name:"Opera",value:"Opera",version:"Opera"},{name:"BlackBerry",value:"CLDC",version:"CLDC"},{name:"Mozilla",value:"Mozilla",version:"Mozilla"}],init:function(){var a=this.header.join(" "),n=this.matchItem(a,this.dataos),r=this.matchItem(a,this.databrowser);return{os:n,browser:r}},matchItem:function(a,n){var r,o,i,l,s,v=0,m=0;for(v=0;v<n.length;v+=1)if(i=(r=RegExp(n[v].value,"i")).test(a)){if(o=RegExp(n[v].version+"[- /:;]([\\d._]+)","i"),l=a.match(o),s="",l&&l[1]&&(l=l[1]),l)for(m=0,l=l.split(/[._]+/);m<l.length;m+=1)0===m?s+=l[m]+".":s+=l[m];else s="0";return{name:n[v].name,version:parseFloat(s)}}return{name:"unknown",version:0}}};var e=module.init();resolve({osName:e.os.name,browserName:e.browser.name,platForm:navigator.platform});
@@ -156,13 +178,8 @@ const printLog    = () => {
 
   // COMMANDS CLICKABLE
   $($LOG).on('click', $CMDS, async function(e) {
-    let sendDate       = (new Date()).getTime();
-    let responce       = await API_(API_ENPOINTS.RESUME);
-    if (responce.data) {
-      let receiveDate    = (new Date()).getTime();
-      let responseTimeMs = receiveDate - sendDate;
-      printData(decideWhatToPrint(responce.data, $(this).attr('rel')), responseTimeMs);
-    }
+    let sendDate  = (new Date()).getTime();
+    appendData(sendDate, this);
   });
 
   // WELCOME SCREEE CLICK
@@ -173,17 +190,30 @@ const printLog    = () => {
   // CALLING NAVIGATION LINK
   $($RESUME_HTML).on('click', '.ulWidth li', async function(e) {
     let sendDate         = (new Date()).getTime();
+    appendData(sendDate, this);
+  });
+
+  // APPEND DATA
+  const appendData       = async (sendDate, element) => {
     let responce         = await API_(API_ENPOINTS.RESUME);
     if (responce.data)   {
       let receiveDate    = (new Date()).getTime();
       let responseTimeMs = receiveDate - sendDate;
-      printData(decideWhatToPrint(responce.data, $(this).attr('rel')), responseTimeMs);
+      moveToLatest();
+      printData(decideWhatToPrint(responce.data, $(element).attr('rel')), responseTimeMs);
     }
-  });
+  };
 
   // PRINT DATA
   const printData = (data, responseTimeMs) => {
-    $($RESUME_HTML).append(`<div class="row"> <div class="col-md-10 mt-3"> <ul class="d-flex ulWidth" type="none"> <div class="col-md-3"> <li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li></div><div class="col-md-"> <li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></div></ul> <p class="commandRun">:~ $ ${data.commandRun}</p>${data.renderData}<p class="responceTimeInMs">${data.recordsLength}in set (${responseTimeMs}.00 ms)</p></div></div>`);
+    $($RESUME_HTML).append(`<div class="row"> <div class="col-md-10 mt-3"> <ul class="d-flex ulWidth" type="none"> <div class="col-md-3"> <li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li></div><div class="col-md-"> <li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></div></ul> <p class="commandRun">:~ $ ${data.commandRun}</p>${data.renderData}<p class="responceTimeInMs">${data.recordsLength} in set (${responseTimeMs}.00 ms)</p></div></div>`);
+  }
+
+  //MOVE TO LAST WINDOW
+  const moveToLatest        = (timeInverval) => {
+    var objDiv              = document.getElementsByTagName("body");
+    // var objDiv              = document.getElementsByClassName($TERIMINAL_CONSOLE);
+    objDiv.scrollTop        = objDiv.scrollHeight
   }
 })();
 
