@@ -1,31 +1,32 @@
-var $TAKE_INPUT  = `#takeInput`, 
-  $LOG           = `#log`,
-  $URL_          = `#urlPath`,
-  $CMDS          = `#commands li`,
-  $TERMINAL_NAME = `.terminalName`,
-  $RESUME_HTML   = `#resumeHtml`,
-  $PRESS_ENTER   = `.pressEnter`;
+var $TAKE_INPUT      = `#takeInput`, 
+  $LOG               = `#log`,
+  $URL_              = `#urlPath`,
+  $CMDS              = `#commands li`,
+  $TERMINAL_NAME     = `.terminalName`,
+  $RESUME_HTML       = `#resumeHtml`,
+  $PRESS_ENTER       = `.pressEnter`;
   $TERIMINAL_CONSOLE = `terminalConsole`;
-var API_ENPOINTS = {
+var API_ENPOINTS     = {
   RESUME : `/resumeData`
 };
 (async function () {
   const detectdeviceName = () => {
     return new Promise((resolve, reject) => {
-      let module={options:[],header:[navigator.platform,navigator.userAgent,navigator.appVersion,navigator.vendor,window.opera],dataos:[{name:"Windows Phone",value:"Windows Phone",version:"OS"},{name:"Windows",value:"Win",version:"NT"},{name:"iPhone",value:"iPhone",version:"OS"},{name:"iPad",value:"iPad",version:"OS"},{name:"Kindle",value:"Silk",version:"Silk"},{name:"Android",value:"Android",version:"Android"},{name:"PlayBook",value:"PlayBook",version:"OS"},{name:"BlackBerry",value:"BlackBerry",version:"/"},{name:"Macintosh",value:"Mac",version:"OS X"},{name:"Linux",value:"Linux",version:"rv"},{name:"Palm",value:"Palm",version:"PalmOS"}],databrowser:[{name:"Chrome",value:"Chrome",version:"Chrome"},{name:"Firefox",value:"Firefox",version:"Firefox"},{name:"Safari",value:"Safari",version:"Version"},{name:"Internet Explorer",value:"MSIE",version:"MSIE"},{name:"Opera",value:"Opera",version:"Opera"},{name:"BlackBerry",value:"CLDC",version:"CLDC"},{name:"Mozilla",value:"Mozilla",version:"Mozilla"}],init:function(){var a=this.header.join(" "),n=this.matchItem(a,this.dataos),r=this.matchItem(a,this.databrowser);return{os:n,browser:r}},matchItem:function(a,n){var r,o,i,l,s,v=0,m=0;for(v=0;v<n.length;v+=1)if(i=(r=RegExp(n[v].value,"i")).test(a)){if(o=RegExp(n[v].version+"[- /:;]([\\d._]+)","i"),l=a.match(o),s="",l&&l[1]&&(l=l[1]),l)for(m=0,l=l.split(/[._]+/);m<l.length;m+=1)0===m?s+=l[m]+".":s+=l[m];else s="0";return{name:n[v].name,version:parseFloat(s)}}return{name:"unknown",version:0}}};var e=module.init();resolve({osName:e.os.name,browserName:e.browser.name,platForm:navigator.platform});
+      let module = {options:[],header:[navigator.platform,navigator.userAgent,navigator.appVersion,navigator.vendor,window.opera],dataos:[{name:"Windows Phone",value:"Windows Phone",version:"OS"},{name:"Windows",value:"Win",version:"NT"},{name:"iPhone",value:"iPhone",version:"OS"},{name:"iPad",value:"iPad",version:"OS"},{name:"Kindle",value:"Silk",version:"Silk"},{name:"Android",value:"Android",version:"Android"},{name:"PlayBook",value:"PlayBook",version:"OS"},{name:"BlackBerry",value:"BlackBerry",version:"/"},{name:"Macintosh",value:"Mac",version:"OS X"},{name:"Linux",value:"Linux",version:"rv"},{name:"Palm",value:"Palm",version:"PalmOS"}],databrowser:[{name:"Chrome",value:"Chrome",version:"Chrome"},{name:"Firefox",value:"Firefox",version:"Firefox"},{name:"Safari",value:"Safari",version:"Version"},{name:"Internet Explorer",value:"MSIE",version:"MSIE"},{name:"Opera",value:"Opera",version:"Opera"},{name:"BlackBerry",value:"CLDC",version:"CLDC"},{name:"Mozilla",value:"Mozilla",version:"Mozilla"}],init:function(){var a=this.header.join(" "),n=this.matchItem(a,this.dataos),r=this.matchItem(a,this.databrowser);return{os:n,browser:r}},matchItem:function(a,n){var r,o,i,l,s,v=0,m=0;for(v=0;v<n.length;v+=1)if(i=(r=RegExp(n[v].value,"i")).test(a)){if(o=RegExp(n[v].version+"[- /:;]([\\d._]+)","i"),l=a.match(o),s="",l&&l[1]&&(l=l[1]),l)for(m=0,l=l.split(/[._]+/);m<l.length;m+=1)0===m?s+=l[m]+".":s+=l[m];else s="0";return{name:n[v].name,version:parseFloat(s)}}return{name:"unknown",version:0}}};var e=module.init();resolve({osName:e.os.name,browserName:e.browser.name,platForm:navigator.platform});
     });
   };
   let deviceName = await detectdeviceName();
   $($TERMINAL_NAME).html(`${deviceName.osName}/${deviceName.platForm}/${deviceName.browserName}`);
   setInterval(() => {
-    let monthsNames = { 1:"Jan",2:"Feb",3:"Mar",4:"April",5:"May",6:"June",7:"July",8:"Aug",9:"Sep",10:"Oct",11:"Nov",12:"Dec" };
+    let monthsNames  = { 1:"Jan",2:"Feb",3:"Mar",4:"April",5:"May",6:"June",7:"July",8:"Aug",9:"Sep",10:"Oct",11:"Nov",12:"Dec" };
     let monthNumeric = new Date().getMonth() + 1;
-    $(`#nowDate`).html(`${monthsNames[monthNumeric]}, ${new Date().getDate()} ${new Date().getFullYear()}  ${new Date().getHours()}:${new Date().getMinutes()}`);
+    let getPMAM      = (time) => { return (time <= 12)? " AM" : " PM" };
+    $(`#nowDate`).html(`${monthsNames[monthNumeric]}, ${new Date().getDate()} ${new Date().getFullYear()}  ${new Date().getHours()}:${new Date().getMinutes()} ${getPMAM(new Date().getMinutes())}`);
   }, 1000);
   $($URL_).html(`<a href="${window.location.href}">${window.location.href}</a>`);
 })();
 const   Logger       =  (message, color) => {
-  color            = color || "black";
+  color              = color || "black";
   switch (color) {
     case "success":  
       color = "Green"; 
@@ -48,7 +49,7 @@ const moveCursorToEnd = function(el, focused) {
   if (typeof el.selectionStart == "number") {
     el.selectionStart = el.selectionEnd = el.value.length;
   } else if (typeof el.createTextRange != "undefined") {
-    if(!focused)
+    if(!focused) 
       el.focus();
       var range = el.createTextRange();
       range.collapse(false);
@@ -76,19 +77,19 @@ const controlWithKeys = (e) => {
   e = e || window.event;
   if (e.keyCode > 48 && e.keyCode < 56) {
     let commands = {
-      49: 'aboutMe',
-      50: 'contact',
-      51: 'education',
-      52: 'experience',
-      53: 'projects',
-      54: 'skills',
-      55: 'languages'
+      49 : 'aboutMe',
+      50 : 'contact',
+      51 : 'education',
+      52 : 'experience',
+      53 : 'projects',
+      54 : 'skills',
+      55 : 'languages'
     };
     appendData(sendDate, commands[e.keyCode]);
   }
 };
 const printLog    = () => {
-  $($LOG).html(`<div class="row mt-5"><div class="col-md-6"><img src="./images/cv.png" class="img-fluid"></div><div class="col-md-6"><p>Sunny Singh</p><p id="urlPath"></p><br/><p>LinkedIn: <a href="https://www.linkedin.com/in/sunny-singh-38a52b113" target="_blank">https://www.linkedin.com/in/sunny-singh-38a52b113</a></p><br/><caption>** Click on commands these commands to view my resume..</caption><ul type="none" id="commands" class="commands"><li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li><li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></ul></div></div>
+  $($LOG).html(`<div class="row mt-5"><div class="col-md-6"><img src="./images/cv_dark.png" class="img-fluid cv_text"></div><div class="col-md-6"><p>Sunny Singh</p><p id="urlPath"></p><br/><p>LinkedIn: <a href="https://www.linkedin.com/in/sunny-singh-38a52b113" target="_blank">https://www.linkedin.com/in/sunny-singh-38a52b113</a></p><br/><caption>** Click on commands these commands to begin with my resume..</caption><ul type="none" id="commands" class="commands"><li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li><li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></ul></div></div>
   `);
 };
 var getMonthAndYear = () => { let month = new Date().getMonth() + 1; month = (month < 10)? "0"+month: month; return month+"/"+new Date().getFullYear() };
@@ -202,6 +203,6 @@ const printData = (data, responseTimeMs) => {
   $($RESUME_HTML).append(`<div class="row"> <div class="col-md-10 mt-3"> <ul class="d-flex ulWidth" type="none"> <div class="col-md-3"> <li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li></div><div class="col-md-"> <li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></div></ul> <p class="commandRun">:~ $ ${data.commandRun}</p>${data.renderData}<p class="responceTimeInMs">${data.recordsLength} in set (${responseTimeMs}.00 ms)</p></div></div>`);
 };
 const moveToLatest        = (elem) => {
-  $("html, body").animate({ scrollTop: $(document).height() }, "easeOutQuint");
+  $("html, body").animate({ scrollTop: $(".main").height() }, "easeOutQuint");
   return false;
 }

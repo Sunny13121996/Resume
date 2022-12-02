@@ -1,9 +1,33 @@
+:root {
+	--warningColor: #ffc107;
+	--darkColor   : #393b3c;
+	--lightColor  : #eeeeee;
+}
+.terminalWindowTabColor {
+	background-color: var(--darkColor);
+}
 body {
 	margin:0;
 	padding: 0;
 	background: url("/images/console_bg.jpg");
-	background-size: cover;
+	background-size: 100%;
 	background-repeat: no-repeat;
+	background-position: top;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+/*colors*/
+.textWhite {
+	color: #FFF;
+}
+/*end colors*/
+
+.main {
+	position: relative;
+	min-height: 100%;
+	overflow: auto;
+	height: 100vh;
 }
 a{
 	color: #FFF;
@@ -13,7 +37,7 @@ a:hover {
 	color: #FFF;
 }
 ._warning {
-	color: #ffc107;
+	color: var(--warningColor);
 }
 ._dev {
 	color: #3d6ac9;	
@@ -91,11 +115,11 @@ a:hover {
 .pressEnter {
 	cursor: pointer;
 }
-.terminalConsole{
+.terminalConsole {
 	box-shadow: 2px 1px 9px 0px;
-	background-image: linear-gradient(to right top, #212529, #24272b, #262a2d, #292c30, #2c2f32);
+	background-image: linear-gradient(to right bottom, #1e1e1e, #181818, #121212, #0a0a0a, #000000);
 }
-.terminalWindowTab{  
+.terminalWindowTab {  
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 }
@@ -110,6 +134,7 @@ a:hover {
 .terminalControls li{
 	margin: 0px;
 	border:none;
+	--bs-list-group-bg: var(--darkColor);
 }
 .terminalControls li:nth-child(1) {
 	color: #ee514b;
@@ -129,4 +154,5 @@ a:hover {
 }
 .terminalName{
 	font-weight: bold;
+	color: var(--lightColor);
 }
