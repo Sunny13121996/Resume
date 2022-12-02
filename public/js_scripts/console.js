@@ -89,7 +89,7 @@ const controlWithKeys = (e) => {
   }
 };
 const printLog    = () => {
-  $($LOG).html(`<div class="row mt-5"><div class="col-md-6"><img src="./images/cv_dark.png" class="img-fluid cv_text"></div><div class="col-md-6"><p>Sunny Singh</p><p id="urlPath"></p><br/><p>LinkedIn: <a href="https://www.linkedin.com/in/sunny-singh-38a52b113" target="_blank">https://www.linkedin.com/in/sunny-singh-38a52b113</a></p><br/><caption>** Click on commands these commands to begin with my resume..</caption><ul type="none" id="commands" class="commands"><li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li><li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></ul></div></div>
+  $($LOG).html(`<div class="row mt-5"><div class="col-md-6"><img src="./images/cv_dark.png" class="img-fluid cv_text"></div><div class="col-md-6"><p>Sunny Singh</p><p id="urlPath"></p><br/><p>LinkedIn: <a href="https://www.linkedin.com/in/sunny-singh-38a52b113" target="_blank">https://www.linkedin.com/in/sunny-singh-38a52b113</a></p><br/><caption>** Click on commands these commands to begin with my resume.. <br/><small class="text-secondary">You can press 1 to 7 key from keyboard to control the view.</small></caption><ul type="none" id="commands" class="commands"><li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li><li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></ul></div></div>
   `);
 };
 var getMonthAndYear = () => { let month = new Date().getMonth() + 1; month = (month < 10)? "0"+month: month; return month+"/"+new Date().getFullYear() };
@@ -203,6 +203,6 @@ const printData = (data, responseTimeMs) => {
   $($RESUME_HTML).append(`<div class="row"> <div class="col-md-10 mt-3"> <ul class="d-flex ulWidth" type="none"> <div class="col-md-3"> <li rel="aboutMe">About Me</li><li rel="contact">Contact Info</li><li rel="education">Education</li></div><div class="col-md-"> <li rel="experience">Work Experience</li><li rel="projects">Projects</li><li rel="skills">Skills</li><li rel="languages">Languages</li></div></ul> <p class="commandRun">:~ $ ${data.commandRun}</p>${data.renderData}<p class="responceTimeInMs">${data.recordsLength} in set (${responseTimeMs}.00 ms)</p></div></div>`);
 };
 const moveToLatest        = (elem) => {
-  $("html, body").animate({ scrollTop: $(".main").height() }, "easeOutQuint");
+  $(".main").animate({ scrollTop: $(".main")[0].scrollHeight}, 1000);
   return false;
 }
